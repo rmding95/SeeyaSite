@@ -19,9 +19,11 @@ function getFlights() {
         contentType: "application/json",
         success: function(data) {
             console.log(data)
+            $("#results_loading").hide();
         },
         error: function(data) {
             console.log(data);
+            $("#results_loading").hide();
         }
     });
 }
