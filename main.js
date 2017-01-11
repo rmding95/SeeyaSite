@@ -44,6 +44,7 @@ function populateAutocomplete() {
 function getFlights() {
     $("#results_loading").show();
     $("#results").empty();
+    //TODO: input can be broken too easily
     var from = $("#departure_airport").val().split(":")[0];
     var to = $("#arrival_airport").val().split(":")[0];
     var url = "http://seeyaapi.azurewebsites.net/schedule/" + from + "/" + to + "/2016-12-30"
