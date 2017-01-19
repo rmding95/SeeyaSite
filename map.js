@@ -1,5 +1,7 @@
 'use strict';
 
+var markers = {};
+
 $(function() {
     var map = L.map('map');
     map.setView([39.50, -98.35], 3);
@@ -21,8 +23,15 @@ $(function() {
                 var airports = data.AirportInfo.Airports;
                 for (var i = 0; i < airports.length; i++) {
                     var marker = L.marker([airports[i].Latitude, airports[i].Longitude]).addTo(map);
+                    var latLng = [parseFloat(airports[i].Latitude), parseFloat(airports[i].Longitude)];
+                    markers[airports[i].Code] = latLng;
                 }
             }
+            console.log(markers);
+            var line = [];
+            line.push(markers["SEA"]);
+            line.push(markers["HNL"]);
+            var polyline = L.polyline([line, {color: "red"}]).addTo(map);
         },
         error: function(data) {
             console.log(data);
